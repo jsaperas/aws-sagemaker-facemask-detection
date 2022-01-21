@@ -1,3 +1,5 @@
+import json
+
 def get_image_dimensions(xml):
     
     dim = xml.find('size')
@@ -48,3 +50,9 @@ def get_bbox(obj, class_map):
     annot['height'] = ymax - ymin
     
     return annot
+
+def save_augmented_manifest(annotations, file):
+    with open(file, 'w') as f:
+        for ann in annotations:
+            json.dump(ann, f)
+            f.write('\n')
